@@ -14,7 +14,7 @@ Before you compile, please examine the file main.c; it contains several importan
 
 Data are provided as header (.h) files.  To analyze any given set of data, uncomment the corresponding #include line.  Only one such line may be defined (uncommented), or the compiler will be unhappy.  Please do not change the #define statements within a data/header file or, if you must, please do so only at your own risk.  Comments about the data format are contained in each header file.
 
-To set the value of k (number of groups), modify this line (in main.c):
+To set the value of *k* (number of groups), modify this line (in main.c):
 ```c
 #define	maxClass  2
 ```
@@ -27,7 +27,7 @@ To generate prolix output, ensure that both of these are true:
 
 Setting the first to 1 and the second to 0 is good for most purposes.
 
-To compile, simply type: gcc main.c -o mdl -lm
+To compile, simply type: `gcc main.c -o mdl -lm`
 
 You may opt to rename the output file and/or set more compiler flags.
 
@@ -37,7 +37,7 @@ The code is admittedly ugly and suboptimal in places.  I do apologize.
 
 See LICENSE.TXT for copyright details.
 
-Peter T. Hraber
+Peter T. Hraber,
 17 March 2003
 
 PS: Only the last solution is reported as best, in case of ties.
