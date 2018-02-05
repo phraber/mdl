@@ -1,18 +1,14 @@
-### MDL
+## MDL
 
-Code and data to support analysis of HLA allele associations with HIV setpoint.
+### Application of the minimum description length (MDL) principle to statistical genetics
 
-Reference: P Hraber, B Korber, S Wolinsky, H Erlich, E Trachtenberg, T Kepler. HLA and HIV infection progression: application of the minimum description length principle to statistical genetics. Lecture Notes in Bioinformatics 4345: 1-12, 2006.
-
-(From README.TXT):
-
-Welcome Reader,
+### Code and data to support analysis of HLA allele associations with HIV setpoint.
 
 This directory contains data and analytic source code to accompany two manuscripts.  Please cite the first one if you use it or a derivative; please cite the second one if you use the data for your own analyses.
 
-P.T. Hraber, B.T. Korber, S. Wolinksy, H. Erlich, E. Trachtenberg, and T.B. Kepler.  2003.  HLA and HIV infection progression: Application of the minimum description length principle to statistical genetics.  Santa Fe Institute preprint #03-04-023.
+[P.T. Hraber, B.T. Korber, S. Wolinksy, H. Erlich, E. Trachtenberg, and T.B. Kepler.  2003.  HLA and HIV infection progression: Application of the minimum description length principle to statistical genetics.  *Lecture Notes in Bioinformatics* 4345: 1-12, 2006.](https://link.springer.com/content/pdf/10.1007%2F11946465_1.pdf)
 
-E.A. Trachtenberg, B.T. Korber, C. Sollars, T.B. Kepler, P.T. Hraber, E. Hayes, R. Funkhouser, M. Fugate, J. Theiler, M. Hsu, K. Kunstman, S. Wu, J. Phair, H.A. Erlich, and S. Wolinsky.  2003.  HLA-A and HLA-B supertype alleles predict human immunodeficiency virus disease progression rate.  Nature Medicine, in review.
+[E.A. Trachtenberg, B.T. Korber, C. Sollars, T.B. Kepler, P.T. Hraber, E. Hayes, R. Funkhouser, M. Fugate, J. Theiler, M. Hsu, K. Kunstman, S. Wu, J. Phair, H.A. Erlich, and S. Wolinsky.  2003.  HLA-A and HLA-B supertype alleles predict human immunodeficiency virus disease progression rate.  *Nature Medicine* 9(7):928-35. PMID:12819779 DOI:10.1038/nm893](https://www.nature.com/articles/nm893)
 
 Before you compile, please examine the file main.c; it contains several important #include and #define statements near the top, before the beginning of the main function.
 
@@ -46,14 +42,14 @@ Peter T. Hraber
 
 PS: Only the last solution is reported as best, in case of ties.
 
-MANIFEST
+## MANIFEST
 
 ### Source code
 + main.c: primary flow-of-control for analysis routine
 + etc.h: auxiliary analysis routines
 + mytest.c: simple file that computes summary stats for testing purposes.
 
-###Data files
+### Data files
 + n479.h: 2-digit allele codes for Class II & Class I loci
 + n379.h: 2-digit allele codes for Class II & Class I loci, Caucasian subset 
 + HLAAsup.h: HLA-A supertypes (n=399, N=4)
@@ -64,4 +60,4 @@ The above data were analyzed in the first paper cited.
 + patients.h: HLA "supertype genotype" alleles (n=293, N=15) as analyzed in the second paper cited above
 + mytest.h: a hypothetical set of data, for testing purposes
 
-### That's all!
+## That's all!
