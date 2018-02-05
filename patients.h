@@ -33,7 +33,7 @@
 #define nObs    293
 #define nCov      4
 #define nLoci     4
-#define SORTED      0
+#define ARE_Ys_PRESORTED 0
 #define TRANSFORMED 1
 #define CALCL2B   0
 #define CENSORED  1

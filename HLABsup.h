@@ -2,7 +2,7 @@
 #define nObs      352
 #define nCov        2
 #define nLoci       1
-#define SORTED      0
+#define ARE_Ys_PRESORTED 0
 #define TRANSFORMED 0
 #define CENSORED    1
 #define THRESH    log(300.)/log2

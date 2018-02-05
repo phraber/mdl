@@ -2,9 +2,9 @@
 #define nObs    379
 #define nCov     12
 #define nLoci     6
+#define ARE_Ys_PRESORTED 1
 #define CENSORED  1
 #define THRESH    log2(300.)
-#define SORTED      1
 #define CALCDVAR    0
 #define TRANSFORMED 0
 #define CALCL2B     0
