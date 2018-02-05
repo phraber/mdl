@@ -19,11 +19,15 @@ Before you compile, please examine the file main.c; it contains several importan
 Data are provided as header (.h) files.  To analyze any given set of data, uncomment the corresponding #include line.  Only one such line may be defined (uncommented), or the compiler will be unhappy.  Please do not change the #define statements within a data/header file or, if you must, please do so only at your own risk.  Comments about the data format are contained in each header file.
 
 To set the value of k (number of groups), modify this line (in main.c):
-'''#define	maxClass  2'''
+```c
+#define	maxClass  2
+```
 
 To generate prolix output, ensure that both of these are true:
-'''#define VERBOSE   1'''
-'''#define DEBUG     1'''
+```c
+#define VERBOSE   1
+#define DEBUG     1
+```
 
 Setting the first to 1 and the second to 0 is good for most purposes.
 
