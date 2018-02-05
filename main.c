@@ -34,14 +34,13 @@
 #define VERBOSE   1
 #define DEBUG     1
 
-//double log2;
-
 #include <math.h>
 #include <stdlib.h> // for qsort - used to Winsorize mean
 #include <stdio.h>  // for fopen, sprintf, etc.
 #include <string.h> // for memcpy
 #include "etc.h" // define the data file above this, because it sets #defines used therein
 
+int
 main(int argc, char** argv)
 {
   extern int X[nObs][nCov];  // stores allele identifiers
@@ -70,7 +69,6 @@ main(int argc, char** argv)
   int n[nClass];
   double IcostA,IcostB;
 
-  log2 = log(2.);
   // data in file patients.h have already been log_2-transformed
 #if !TRANSFORMED
   transformData(y,Y,nObs,0.); /* use theta=0. for log-transform */
@@ -92,7 +90,7 @@ main(int argc, char** argv)
   if (l >= nLoci) { 
     printf("ERROR: cannot analyze locus %d with only %d loci in data!\n", 
 	   l+1, nLoci); 
-    return;
+    return(1);
   }
 
   nAlleles = indexAlleles(l,nObs,idMap,a);
@@ -125,7 +123,7 @@ main(int argc, char** argv)
 
   IcostB=0;
 
-  IcostA=nAlleles*log(nClass)/log2;
+  IcostA=nAlleles*log2(nClass);
   if (argc>=5) Lmin=atof(argv[4]); 
 
   nSplits = 0;
@@ -133,7 +131,7 @@ main(int argc, char** argv)
   for (m=p; m<=q; m++) { // iterate through partitions
 
 #if DEBUG
-    printf("%d\t",m);
+    printf("%lu\t",m);
 #endif
     for (k=0; k < nAlleles; k++) {
       ind[k] = (m / (int)pow(nClass, k)) % nClass; // map alleles to classes
@@ -223,16 +221,16 @@ main(int argc, char** argv)
       is_lower = 1;
 
 #if VERBOSE
-      printf("L'=%g\tl'=%d\tm'=%u\n",Lmin,lStar+1,mStar);
+      printf("L'=%g\tl'=%d\tm'=%lu\n",Lmin,lStar+1,mStar);
 #endif
     }
   } // end of partition iteration loop
 
   if (is_lower) {
-    IcostB = log(nSplits)/log2;
+    IcostB = log2(nSplits);
 
 #if DEBUG
-    printf("%d\t",mStar);
+    printf("%lu\t",mStar);
 #endif
     for (k=0; k < nAlleles; k++) {
       ind[k] = (mStar / (int)pow(nClass, k)) % nClass;
@@ -288,7 +286,7 @@ main(int argc, char** argv)
     n[1]=nObs-n[0];
 #endif
 
-    printf ("L*=%g\tL'=%f  L\"=%f\tl*=%d\tm*=%u\n",Lmin,Lmin+IcostA,Lmin+IcostB,lStar+1,mStar);
+    printf ("L*=%g\tL'=%f  L\"=%f\tl*=%d\tm*=%lu\n",Lmin,Lmin+IcostA,Lmin+IcostB,lStar+1,mStar);
 
 #if (maxClass == 2)
     showL2(iClass,Y,nObs);
@@ -298,5 +296,6 @@ main(int argc, char** argv)
     showClasses(ind,idMap,nAlleles,nClass);
     showCases(iClass,Y,nObs,l,mStar,nClass);
   }
+  return(0);
 } /* MAIN */
 /***************************************************************************/

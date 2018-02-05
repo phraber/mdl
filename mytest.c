@@ -16,16 +16,18 @@
 //double log2;
 
 #include <math.h>
-#include <stdlib.h> /* for qsort - used to Winsorize mean */
-###include <string.h> // for memcpy
+#include <stdio.h>  // for printf
+#include <stdlib.h> // for qsort - used to Winsorize mean
+#include <string.h> // for memcpy
 
 //#include "patient.h"
 //#include "HLAAsup.h"
 //#include "HLABsup.h"
 //#include "mytest.h"
 #include "n379.h"
-#include "etc.h"
+#include "etc.h" // this must follow the data-file inclusion
 
+int
 main(int argc, char** argv)
 {
   extern int X[nObs][nCov];
@@ -36,7 +38,6 @@ main(int argc, char** argv)
   moments* g;
   int n[nClass];
 
-  log2 = log(2.);
   transformData(y,Y,nObs,0.); /* use theta=0. for log-transform */
 
   g = malloc(sizeof(moments)); /* should error trap here */
@@ -47,26 +48,27 @@ main(int argc, char** argv)
 
   // use estimators adjusted to censor below value of thresh
   thresh=1.;
-  g = WDMoments(Y,g,log(thresh)/log2);
+  g = WDMoments(Y,g,log2(thresh));
   printf("g->Wmean=%f\tg->Dvar=%f\tL=%f\t(thresh=%f.)\n",g->mean,g->var,L0(g),thresh);
 
   thresh=300.;
-  g = WDMoments(Y,g,log(thresh)/log2);
+  g = WDMoments(Y,g,log2(thresh));
   printf("g->Wmean=%f\tg->Dvar=%f\tL=%f\t(thresh=%f.)\n",g->mean,g->var,L0(g),thresh);
 
   thresh=400.;
-  g = WDMoments(Y,g,log(thresh)/log2);
+  g = WDMoments(Y,g,log2(thresh));
   printf("g->Wmean=%f\tg->Dvar=%f\tL=%f\t(thresh=%f.)\n",g->mean,g->var,L0(g),thresh);
 
   thresh=500.;
-  g = WDMoments(Y,g,log(thresh)/log2);
+  g = WDMoments(Y,g,log2(thresh));
   printf("g->Wmean=%f\tg->Dvar=%f\tL=%f\t(thresh=%f.)\n",g->mean,g->var,L0(g),thresh);
 
   thresh=1000.;
-  g = WDMoments(Y,g,log(thresh)/log2);
+  g = WDMoments(Y,g,log2(thresh));
   printf("g->Wmean=%f\tg->Dvar=%f\tL=%f\t(thresh=%f.)\n",g->mean,g->var,L0(g),thresh);
 
   free(g);
   g=0;
+  return(0);
 } /* MAIN */
 /***************************************************************************/

@@ -183,17 +183,19 @@ WDMoments(double* z, moments* m, double theta) {
   return m;
 }
 /***************************************************************************/
+void
 transformData(double* y, double* Y, int n, double lambda) {
   int i;
 
   if (lambda == 0.)
     for (i = 0; i < n; i++)
-      Y[i]=log(y[i])/log2;
+      Y[i]=log2(y[i]);
   else
     for (i = 0; i < n; i++)
       Y[i]=(pow(y[i],lambda)-1)/(lambda);
 }
 /***************************************************************************/
+void
 atransData(double* y, double* Y, int n) {
   int i;
 
@@ -211,12 +213,12 @@ double calcL(moments** u, int k) {
     L += (u[i]->n)/2.;
 
     /* error variance */
-    L += (u[i]->n - 1.)*log(u[i]->var)/log2/2.;
+    L += (u[i]->n - 1.)*log2(u[i]->var)/2.;
 
     /* variance of means */
-    L += log(u[i]->n * pow(u[i]->mean,2))/log2/2.;
+    L += log2(u[i]->n * pow(u[i]->mean,2))/2.;
 
-    L += log(u[i]->n)/log2;
+    L += log2(u[i]->n);
   }
 
   return L;
@@ -229,17 +231,17 @@ double calcLa(moments** u) {
   L = u[0]->n + u[1]->n;
 
   /* error variance */
-  L += (u[0]->n - 1.)*log(u[0]->var)/log2;
-  L += (u[1]->n - 1.)*log(u[1]->var)/log2;
+  L += (u[0]->n - 1.)*log2(u[0]->var);
+  L += (u[1]->n - 1.)*log2(u[1]->var);
 
   /* variance of means */
-  L += log(u[0]->n * pow(u[0]->mean,2))/log2;
-  L += log(u[1]->n * pow(u[1]->mean,2))/log2;
+  L += log2(u[0]->n * pow(u[0]->mean,2));
+  L += log2(u[1]->n * pow(u[1]->mean,2));
 
   L /= 2.;
 
-  L += log(u[0]->n)/log2;
-  L += log(u[1]->n)/log2;
+  L += log2(u[0]->n);
+  L += log2(u[1]->n);
 
   return L;
 }
@@ -251,19 +253,18 @@ double calcLb(moments** u) {
   L = u[0]->n + u[1]->n;
 
   /* error variance */
-  L += (u[0]->n - 1.)*log(u[0]->var)/log2;
-  L += (u[1]->n - 1.)*log(u[1]->var)/log2;
+  L += (u[0]->n - 1.)*log2(u[0]->var);
+  L += (u[1]->n - 1.)*log2(u[1]->var);
 
   /* variance of means */
-  //  L += log((u[0]->mean*u[0]->mean - u[1]->mean*u[1]->mean)*(u[0]->mean*u[0]->mean - u[1]->mean*u[1]->mean)*(u[0]->n * u[1]->n)/4.)/log2;
-  L += log((pow(pow(u[0]->mean,2) - pow(u[1]->mean,2),2))*(u[0]->n * u[1]->n)/4.)/log2; //pth - 01/07/03
+  L += log2((pow(pow(u[0]->mean,2) - pow(u[1]->mean,2),2))*(u[0]->n * u[1]->n)/4.);
 
-  L += log(u[0]->n)/log2;
-  L += log(u[1]->n)/log2;
+  L += log2(u[0]->n);
+  L += log2(u[1]->n);
 
   L /= 2.;
 
-  L += log(u[0]->n + u[1]->n)/log2;
+  L += log2(u[0]->n + u[1]->n);
 
   return L;
 }
@@ -309,7 +310,7 @@ indexAlleles(int l, int n, int* id_map, int* a) {
 /****************************************************************************/
 double L0(moments* m) {
   /* should do error checking, to avoid invalid operations */
-  return (m->n + (m->n - 1.)*log(m->var)/log2 + log(m->n*m->mean*m->mean)/log2)/2. + log(m->n)/log2;
+  return (m->n + (m->n - 1.)*log2(m->var) + log2(m->n*m->mean*m->mean))/2. + log2(m->n);
 }
 /***************************************************************************/
 double
@@ -434,6 +435,7 @@ double computeL(int* iClass, double* z, int nobs, int nClass) {
   return L;
 }
 /***************************************************************************/
+void
 showL(int* iClass,double* z,int nobs,int nClass) {
 
   int i;
@@ -554,6 +556,7 @@ showL2(int* iClass, double* z, int nobs) {
 #endif
 }
 /***************************************************************************/
+void
 showCases(int* iClass,double* Y,int n,int l,long m,int nClass) {
 #if DEBUG
   int i;
@@ -562,7 +565,7 @@ showCases(int* iClass,double* Y,int n,int l,long m,int nClass) {
 
   fname = malloc(80*sizeof(char));
 
-  sprintf(fname,"cases-n%d-l%d-k%d-m%d.out",nObs,l+1,nClass,m);
+  sprintf(fname,"cases-n%d-l%d-k%d-m%ld.out",nObs,l+1,nClass,m);
 
   fstream = fopen(fname,"w");
   for (i=0; i < n; i++)
@@ -573,6 +576,7 @@ showCases(int* iClass,double* Y,int n,int l,long m,int nClass) {
 #endif
 }
 /***************************************************************************/
+void
 showClasses(int* ind, int* idMap, int nAlleles, int nClass) {
 #if VERBOSE
   int k,i;
@@ -598,7 +602,7 @@ split(unsigned long m,int nClass,int nAlleles,int* ind,int* a,int* iClass) {
   int n[maxClass];
 
 #if DEBUG
-  printf("%d\t",m);
+  printf("%lu\t",m);
 #endif
   for (k=0; k < nAlleles; k++) {
     ind[k] = (m / (int)pow(nClass, k)) % nClass;

@@ -37,7 +37,7 @@
 #define TRANSFORMED 1
 #define CALCL2B   0
 #define CENSORED  1
-#define THRESH    log(300.)/log2
+#define THRESH    log2(300.)
 #define CALCDVAR    0
 
 /* HLA-A, HLA-B, class i homozygosity, class ii */
