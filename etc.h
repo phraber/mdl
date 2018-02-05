@@ -45,8 +45,8 @@ Mean(double* z, int n) {
 double
 Median(double* z, int n) {
 
-  // this is slow!  better to presort the data
 #if !ARE_Ys_PRESORTED
+  // this is slow!  better to presort the data
   qsort(z,n,sizeof(double),doublecompare);
 #endif
   // better test/check this!

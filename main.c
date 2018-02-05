@@ -24,15 +24,15 @@
 // AUTHORS: Tom Kepler and Peter Hraber (11/2001 - 3/2003)
 
 // specify header file containing data
-#include "patients.h" // concatenated supertype genotypes
+//#include "patients.h" // concatenated supertype genotypes
 //#include "HLAAsup.h"
 //#include "HLABsup.h"
 //#include "n379.h"
-//#include "n479.h"
+#include "n479.h"
 
 #define	maxClass  2
 #define VERBOSE   1
-#define DEBUG     1
+#define DEBUG     0
 
 #include <math.h>
 #include <stdlib.h> // for qsort - used to Winsorize mean

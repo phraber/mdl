@@ -46,7 +46,6 @@ The code is admittedly ugly and suboptimal in places.  I do apologize.
 See LICENSE.TXT for copyright details.
 
 Peter T. Hraber
-pth@santafe.edu
 17 March 2003
 
 MANIFEST
