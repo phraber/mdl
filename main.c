@@ -24,9 +24,9 @@
 // AUTHORS: Tom Kepler and Peter Hraber (11/2001 - 3/2003)
 
 // specify header file containing data
-//#include "patients.h" // concatenated supertype genotypes
-//#include "HLAAsup.h"
-//#include "HLABsup.h"
+//#include "patients_presorted.h" // concatenated supertype genotypes
+//#include "HLAAsup_presorted.h"
+//#include "HLABsup_presorted.h"
 //#include "n379.h"
 #include "n479.h"
 
