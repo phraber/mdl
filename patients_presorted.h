@@ -7,16 +7,16 @@
  * analysis.  Because allele ids are stored as integers, rather than
  * strings, the following representation is used:
  *
- *    A1s  -> 1          B7s  -> 77
- *    A2s  -> 2          B27s -> 27
- *    A3s  -> 3          B44s -> 44
- *    A24s -> 4          B58s -> 58
- *                       B62s -> 62
+ *    A1S  -> 1          B7S  -> 77
+ *    A2S  -> 2          B27S -> 27
+ *    A3S  -> 3          B44S -> 44
+ *    A24S -> 4          B58S -> 58
+ *                       B62S -> 62
  *
  * Also, since we are interested in the concatenation of two loci to
  * yield a single "supertype genotype", ordering is consistent such
  * that the locus having the lower integer-valued identifier is given
- * first, i.e., either an A2s-A1s or an A1s-A2s individual will be
+ * first, i.e., either an A2s-A1S or an A1S-A2S individual will be
  * represented below as 1-2, with the hyphen eliminated: 12.
  *
  * Finally, patient identifiers have been eliminated, though the

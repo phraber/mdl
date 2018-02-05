@@ -12,9 +12,11 @@
 /* NB: data have been reformatted from the original, to facilitate
  * analysis.  Because allele ids are stored as integers, rather than
  * strings, the following representation is used:
- * A1s->1, A2s->2, A3s->3, A24s->4
+ * A1S->1, A2S->2, A3S->3, A24S->4
  *
  * Ordering of values in this & the next vector (y) must be preserved!
+ *
+ * HIV viral RNA levels herein have already been log_2-transformed.
  */
 
 int X[nObs][nCov]={
